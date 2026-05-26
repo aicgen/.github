@@ -14,17 +14,19 @@
 
 ## 🎯 Our Mission
 
-We build tools that help developers harness the full potential of AI coding assistants. Our flagship CLI tool generates tailored configuration files for popular AI assistants like Claude Code, GitHub Copilot, Gemini, and more.
+We build tools that help developers harness the full potential of AI coding assistants. Our flagship CLI tool generates capability-aware profiles for Claude Code, GitHub Copilot, Antigravity, and Codex.
 
 ## 🚀 Featured Projects
 
 ### [aicgen](https://github.com/aicgen/aicgen)
-**AI Configuration Generator** - Interactive CLI that generates tailored instruction files for AI coding assistants
+**AI Configuration Generator** - Interactive CLI that generates tailored instructions, workflows, skills, hooks, and local plugin files for AI coding assistants
 
-- 🎯 Multi-assistant support (Claude Code, Copilot, Gemini, Antigravity, Codex)
-- 📚 82+ curated guidelines across 12 categories
+- 🎯 Multi-assistant support (Claude Code, Copilot, Antigravity, Codex)
+- 📚 99 curated guidelines across 12 categories
 - 🏗️ Architecture-aware (Microservices, DDD, Clean Architecture, etc.)
-- ⚡ Auto-generates hooks and verification agents
+- ⚡ Agentic profiles: `basic`, `standard`, and `full`
+- 🔁 SDLC workflows: `/spec`, `/research`, `/plan`, `/build`, `/check`, `/ship`
+- 🧩 Project-local Codex `aicgen-sdlc` plugin with namespaced `/aicgen-*` skills
 - 📦 Zero external dependencies - fully embedded
 
 ```bash
@@ -35,9 +37,10 @@ aicgen init
 ### [aicgen-data](https://github.com/aicgen/aicgen-data)
 **Guideline Repository** - Curated collection of AI assistant guidelines and best practices
 
-- Language-specific guidelines (TypeScript, Python, Go, Rust, Java, etc.)
+- Language-specific guidelines (TypeScript, JavaScript, Python, Go, Rust, Java, C#, Ruby, Dart, Swift, Kotlin, PHP)
 - Architecture patterns and design principles
 - Security, performance, and testing best practices
+- Capability matrix for Claude Code, Copilot, Antigravity, and Codex
 - Regularly updated with community contributions
 
 ---
@@ -48,12 +51,13 @@ aicgen init
 
 | Metric | Value |
 |--------|-------|
-| **Guidelines** | 82+ |
+| **Guidelines** | 99 |
 | **Categories** | 12 |
-| **Languages** | 8 |
-| **Architectures** | 8 |
-| **Assistants** | 5 |
-| **Test Coverage** | 94% |
+| **Languages** | 12 |
+| **Architectures** | 10 |
+| **Assistants** | 4 |
+| **SDLC Workflows** | 6 |
+| **Profile Levels** | basic, standard, full |
 
 </div>
 
@@ -75,6 +79,7 @@ aicgen init
 ✅ One command to set up AI assistant configurations
 ✅ Curated, categorized guidelines for your stack
 ✅ Architecture-aware recommendations
+✅ Profile-gated workflows, skills, hooks, plugins, and MCP templates
 ✅ Automatic updates from central repository
 ✅ Project-specific customization
 ```
@@ -103,6 +108,7 @@ Write a blog post, create a tutorial, or share how you use aicgen in your workfl
 
 - [Getting Started Guide](https://github.com/aicgen/aicgen#-quick-start)
 - [CLI Documentation](https://github.com/aicgen/aicgen#-features)
+- [Agentic Profiles](https://github.com/aicgen/aicgen-data/tree/main/agentic)
 - [Guideline Categories](https://github.com/aicgen/aicgen-data)
 - [Contributing Guidelines](https://github.com/aicgen/.github/blob/main/CONTRIBUTING.md)
 - [Code of Conduct](https://github.com/aicgen/.github/blob/main/CODE_OF_CONDUCT.md)
