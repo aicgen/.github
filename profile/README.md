@@ -22,15 +22,16 @@ We build tools that help developers harness the full potential of AI coding assi
 **AI Configuration Generator** - Interactive CLI that generates tailored instructions, workflows, skills, hooks, and local plugin files for AI coding assistants
 
 - 🎯 Multi-assistant support (Claude Code, Copilot, Antigravity, Codex)
-- 📚 99 curated guidelines across 12 categories
+- 📚 116 curated guidelines across 12 categories, now including first-class Rust (edition 2024)
 - 🏗️ Architecture-aware (Microservices, DDD, Clean Architecture, etc.)
 - ⚡ Agentic profiles: `basic`, `standard`, and `full`
+- 🧠 Context-budgeted output: small always-on files, path-scoped rules and on-demand skills, with examples localized to your project's language
 - 🔁 SDLC workflows: `/spec`, `/research`, `/plan`, `/build`, `/check`, `/ship`
 - 🧩 Project-local Codex `aicgen-sdlc` plugin with namespaced `/aicgen-*` skills
 - 📦 Zero external dependencies - fully embedded
 
 ```bash
-npm install -g @aicgen/aicgen
+npm install -g @aicgen/aicgen   # or: brew install aicgen/aicgen/aicgen
 aicgen init
 ```
 
@@ -39,7 +40,8 @@ aicgen init
 
 - Language-specific guidelines (TypeScript, JavaScript, Python, Go, Rust, Java, C#, Ruby, Dart, Swift, Kotlin, PHP)
 - Architecture patterns and design principles
-- Security, performance, and testing best practices
+- Security (including supply-chain and AI-agent security), performance, and testing best practices
+- Every guideline starts with short, checkable rules and ships a "Use when ..." description so assistants load it only when relevant
 - Capability matrix for Claude Code, Copilot, Antigravity, and Codex
 - Regularly updated with community contributions
 
@@ -51,7 +53,7 @@ aicgen init
 
 | Metric | Value |
 |--------|-------|
-| **Guidelines** | 99 |
+| **Guidelines** | 116 |
 | **Categories** | 12 |
 | **Languages** | 12 |
 | **Architectures** | 10 |

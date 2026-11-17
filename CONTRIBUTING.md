@@ -50,13 +50,15 @@ Help expand our guideline library:
 
 1. Fork [aicgen-data](https://github.com/aicgen/aicgen-data)
 2. Add your guideline in the appropriate category
-3. Update `data/mappings.json` with metadata
-4. Submit a pull request
+3. Register it in `guideline-mappings.yml` with a `description` (what it covers, ending in `Use when ...`), category, levels and tags
+4. Run `scripts/validate-data` (and `scripts/check-rust-snippets` for Rust)
+5. Submit a pull request
 
 **Guideline Quality Standards:**
-- Clear, actionable advice
-- Include code examples (good vs bad)
-- Follow existing formatting
+- Start with a short `## Rules` list of imperative, checkable statements; examples come after
+- Keep it focused: aim for under ~2,500 tokens (the validator fails above 3,000)
+- Use a distinct title and a specific `description`; link to related guidelines instead of repeating them
+- Include code only where it shows something prose cannot, and tag code fences accurately (examples in another language are dropped when generating for a different project language)
 - Language-agnostic when possible
 - Cite sources if applicable
 
@@ -66,7 +68,7 @@ Help expand our guideline library:
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
 3. Make your changes
 4. Write or update tests
-5. Ensure all tests pass (`bun test`)
+5. Ensure typecheck, lint and all tests pass (`bun run typecheck`, `bun run lint`, `bun run test`)
 6. Commit your changes (see commit guidelines below)
 7. Push to your branch (`git push origin feature/amazing-feature`)
 8. Open a Pull Request
@@ -77,14 +79,14 @@ Help expand our guideline library:
 
 ### Prerequisites
 
-- [Bun](https://bun.sh) >= 1.0.0 (or Node.js >= 20.x)
+- [Bun](https://bun.sh) (current release) and Node.js >= 22
 - Git
 
 ### Setup Instructions
 
 ```bash
-# Clone your fork
-git clone https://github.com/YOUR_USERNAME/aicgen.git
+# Clone your fork (the guideline data is a git submodule)
+git clone --recurse-submodules https://github.com/YOUR_USERNAME/aicgen.git
 cd aicgen
 
 # Install dependencies
@@ -93,11 +95,18 @@ bun install
 # Build the project
 bun run build
 
-# Run tests
-bun test
+# Run tests (Jest; `bun test` would use Bun's own runner)
+bun run test
 
 # Run tests with coverage
-bun test --coverage
+bun run test:coverage
+
+# Typecheck and lint
+bun run typecheck
+bun run lint
+
+# Re-embed guideline data after changing aicgen-data
+bun run embed
 
 # Run in development mode
 bun run dev
@@ -112,6 +121,9 @@ src/
 ├── commands/               # CLI commands (init, update, quick-add)
 ├── services/               # Core business logic
 │   ├── guideline-loader.ts
+│   ├── guideline-delivery.ts   # scoped rules vs on-demand skills
+│   ├── guideline-localizer.ts  # drops examples in other languages
+│   ├── context-budget.ts       # vendor limits and token budgets
 │   ├── assistant-file-writer.ts
 │   └── data-source.ts
 ├── models/                 # TypeScript interfaces
@@ -125,14 +137,14 @@ src/
 1. **Update tests** - Add or update tests for your changes
 2. **Update documentation** - Update README or docs if needed
 3. **Follow code style** - Match existing code formatting
-4. **Pass all tests** - `bun test` must pass
+4. **Pass all checks** - `bun run typecheck`, `bun run lint` and `bun run test` must pass
 5. **One feature per PR** - Keep PRs focused
 6. **Descriptive PR title** - Use conventional commit format
 7. **Fill out PR template** - Provide context and testing details
 
 ### PR Checklist
 
-- [ ] Tests pass locally (`bun test`)
+- [ ] Typecheck, lint and tests pass locally (`bun run typecheck && bun run lint && bun run test`)
 - [ ] Code follows project style guidelines
 - [ ] Documentation updated (if needed)
 - [ ] No new warnings or errors
